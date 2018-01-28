@@ -182,13 +182,13 @@ class VPaymentAgreementView:UIView{
     }
 
     func makeTransactionRequest(amount:Int){
-        let requestServices:ChangeValanceMutation = ChangeValanceMutation(senderID:kCodeSender, reciverID:kCodeReciver, amount:amount)
+        let requestServices:ChangeBalanceMutation = ChangeBalanceMutation(senderID:kCodeSender, reciverID:kCodeReciver, amount:amount)
 
         DispatchQueue.global(qos:DispatchQoS.QoSClass.background).async
             {
                 self.apollo.perform(mutation: requestServices) { (result, error) in
-                    print(result!.data!.changeValance)
-                    let finalResult:Int = (result?.data?.changeValance)!
+                    print(result!.data!.changeBalance)
+                    let finalResult:Int = (result?.data?.changeBalance)!
 
                     UIView.animate(withDuration: 0.1,
                                    delay: 0.1,
@@ -197,7 +197,7 @@ class VPaymentAgreementView:UIView{
 
                                     if finalResult > 0{
                                         self.successFailureButton.isHidden = false
-                                        self.successFailureButton.setTitle("Transacción Exitosa", for: .normal)
+                                        self.successFailureButton.setTitle("Exito: Tu nuevo saldo es $\(finalResult)", for: .normal)
                                     }
                                     else{
                                         self.successFailureButton.isHidden = false

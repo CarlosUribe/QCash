@@ -86,7 +86,7 @@
             "deprecationReason": null
           },
           {
-            "name": "valance",
+            "name": "balance",
             "description": "",
             "args": [],
             "type": {
@@ -150,7 +150,7 @@
             "deprecationReason": null
           },
           {
-            "name": "changeValance",
+            "name": "changeBalance",
             "description": "",
             "args": [
               {

@@ -2,9 +2,9 @@
 
 import Apollo
 
-public final class ChangeValanceMutation: GraphQLMutation {
+public final class ChangeBalanceMutation: GraphQLMutation {
   public static let operationString =
-    "mutation ChangeValance($senderID: String!, $reciverID: String!, $amount: Int!) {\n  changeValance(senderId: $senderID, recieverId: $reciverID, amount: $amount)\n}"
+    "mutation ChangeBalance($senderID: String!, $reciverID: String!, $amount: Int!) {\n  changeBalance(senderId: $senderID, recieverId: $reciverID, amount: $amount)\n}"
 
   public var senderID: String
   public var reciverID: String
@@ -24,7 +24,7 @@ public final class ChangeValanceMutation: GraphQLMutation {
     public static let possibleTypes = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("changeValance", arguments: ["senderId": GraphQLVariable("senderID"), "recieverId": GraphQLVariable("reciverID"), "amount": GraphQLVariable("amount")], type: .nonNull(.scalar(Int.self))),
+      GraphQLField("changeBalance", arguments: ["senderId": GraphQLVariable("senderID"), "recieverId": GraphQLVariable("reciverID"), "amount": GraphQLVariable("amount")], type: .nonNull(.scalar(Int.self))),
     ]
 
     public var snapshot: Snapshot
@@ -33,16 +33,16 @@ public final class ChangeValanceMutation: GraphQLMutation {
       self.snapshot = snapshot
     }
 
-    public init(changeValance: Int) {
-      self.init(snapshot: ["__typename": "Mutation", "changeValance": changeValance])
+    public init(changeBalance: Int) {
+      self.init(snapshot: ["__typename": "Mutation", "changeBalance": changeBalance])
     }
 
-    public var changeValance: Int {
+    public var changeBalance: Int {
       get {
-        return snapshot["changeValance"]! as! Int
+        return snapshot["changeBalance"]! as! Int
       }
       set {
-        snapshot.updateValue(newValue, forKey: "changeValance")
+        snapshot.updateValue(newValue, forKey: "changeBalance")
       }
     }
   }
