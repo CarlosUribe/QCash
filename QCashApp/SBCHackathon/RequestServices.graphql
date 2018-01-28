@@ -1,0 +1,9 @@
+mutation ChangeValance($senderID:String!, $reciverID:String!, $amount:Int!){
+    changeValance(senderId: $senderID, recieverId: $reciverID, amount: $amount)
+}
+
+mutation CreateUser($name:String!){
+    createUser(name:$name){
+        id
+    }
+}

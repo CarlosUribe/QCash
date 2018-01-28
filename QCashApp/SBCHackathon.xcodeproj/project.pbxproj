@@ -32,6 +32,8 @@
 		B212BCC2201D235C00B83504 /* VPaymentAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCC1201D235C00B83504 /* VPaymentAgreementView.swift */; };
 		B212BCC4201D41E900B83504 /* CQRMakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCC3201D41E900B83504 /* CQRMakerController.swift */; };
 		B212BCC6201D42BA00B83504 /* VQRMakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCC5201D42BA00B83504 /* VQRMakerView.swift */; };
+		B212BD00201D6C7600B83504 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCFF201D6C7600B83504 /* API.swift */; };
+		B212BD02201D6D7E00B83504 /* RequestServices.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B212BD01201D6D7E00B83504 /* RequestServices.graphql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		B212BCC1201D235C00B83504 /* VPaymentAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPaymentAgreementView.swift; sourceTree = "<group>"; };
 		B212BCC3201D41E900B83504 /* CQRMakerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRMakerController.swift; sourceTree = "<group>"; };
 		B212BCC5201D42BA00B83504 /* VQRMakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VQRMakerView.swift; sourceTree = "<group>"; };
+		B212BCFF201D6C7600B83504 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = SBCHackathon/API.swift; sourceTree = "<group>"; };
+		B212BD01201D6D7E00B83504 /* RequestServices.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RequestServices.graphql; sourceTree = "<group>"; };
 		DFECD38A2E24A54120421B38 /* Pods-SBCHackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SBCHackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-SBCHackathon/Pods-SBCHackathon.release.xcconfig"; sourceTree = "<group>"; };
 		F6C235508B56080F6239C969 /* Pods_SBCHackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SBCHackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +128,7 @@
 		B20A5782201C086E0008264F = {
 			isa = PBXGroup;
 			children = (
+				B212BCFF201D6C7600B83504 /* API.swift */,
 				B20A578D201C086E0008264F /* SBCHackathon */,
 				B20A57A2201C086F0008264F /* SBCHackathonTests */,
 				B20A57AD201C086F0008264F /* SBCHackathonUITests */,
@@ -165,6 +170,7 @@
 				B212BCB3201CF87100B83504 /* VMainShade.swift */,
 				B212BCB9201D036F00B83504 /* UIVIewControllerExtension.swift */,
 				B212BCBD201D21F100B83504 /* NotificationsExtension.swift */,
+				B212BD01201D6D7E00B83504 /* RequestServices.graphql */,
 				B20A5792201C086E0008264F /* Main.storyboard */,
 				B20A5795201C086E0008264F /* Assets.xcassets */,
 				B20A5797201C086E0008264F /* LaunchScreen.storyboard */,
@@ -312,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B20A5799201C086E0008264F /* LaunchScreen.storyboard in Resources */,
+				B212BD02201D6D7E00B83504 /* RequestServices.graphql in Resources */,
 				B20A5796201C086E0008264F /* Assets.xcassets in Resources */,
 				B20A5794201C086E0008264F /* Main.storyboard in Resources */,
 			);
@@ -420,6 +427,7 @@
 				B212BCC0201D22F700B83504 /* CPaymentAgreementController.swift in Sources */,
 				B212BCC2201D235C00B83504 /* VPaymentAgreementView.swift in Sources */,
 				B212BCC4201D41E900B83504 /* CQRMakerController.swift in Sources */,
+				B212BD00201D6C7600B83504 /* API.swift in Sources */,
 				B212BCB6201D01C500B83504 /* CQRController.swift in Sources */,
 				B212BCC6201D42BA00B83504 /* VQRMakerView.swift in Sources */,
 				B212BCAC201CF62B00B83504 /* CMain.swift in Sources */,

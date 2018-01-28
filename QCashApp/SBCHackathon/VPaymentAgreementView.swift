@@ -8,13 +8,25 @@
 
 import UIKit
 import LocalAuthentication
+import Apollo
 
 class VPaymentAgreementView:UIView{
     weak var controller:CPaymentAgreementController!
     weak var paymentLabel:UILabel!
     weak var paymentButton:UIButton!
     weak var cancelButton:UIButton!
+    weak var successFailureButton:UIButton!
     var paymentCuantity:String = ""
+    private let kCodeSender:String = "3ec61274-823b-4610-bd86-a8f5626c55b4"//usuario creado desde el backend
+    private let kCodeReciver:String = "f093584c-9bf5-46ec-8754-c8ad84a935ec"
+
+    let apollo: ApolloClient = {
+        let graphQLEndpoint:String = "https://qcash.roderik.io"
+        let configuration = URLSessionConfiguration.default
+        let url = URL(string: graphQLEndpoint)!
+
+        return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+    }()
 
     init(controller: CPaymentAgreementController, data:String){
         super.init(frame: .zero)
@@ -31,6 +43,20 @@ class VPaymentAgreementView:UIView{
         paymentLabel.textColor = .black
         paymentLabel.textAlignment = .center
         self.paymentLabel = paymentLabel
+
+        let successFailureButton:UIButton = UIButton()
+        successFailureButton.clipsToBounds = true
+        successFailureButton.translatesAutoresizingMaskIntoConstraints = false
+        successFailureButton.clipsToBounds = true
+        successFailureButton.translatesAutoresizingMaskIntoConstraints = false
+        successFailureButton.setTitleColor(.white, for: .normal)
+        successFailureButton.layer.cornerRadius = 8.0
+        successFailureButton.backgroundColor = UIColor(red:0.32, green:0.56, blue:0.95, alpha:1.0)
+        successFailureButton.isHidden = true
+        successFailureButton.addTarget(self,
+                                action: #selector(endTransaction(sender:)),
+                                for: .touchUpInside)
+        self.successFailureButton = successFailureButton
 
         let paymentButton:UIButton = UIButton()
         paymentButton.clipsToBounds = true
@@ -59,11 +85,13 @@ class VPaymentAgreementView:UIView{
         addSubview(paymentLabel)
         addSubview(paymentButton)
         addSubview(cancelButton)
+        addSubview(successFailureButton)
 
         let views:[String : UIView] = [
             "paymentLabel":paymentLabel,
             "paymentButton":paymentButton,
-            "cancelButton":cancelButton]
+            "cancelButton":cancelButton,
+            "successFailureButton":successFailureButton]
 
         let metrics:[String : CGFloat] = [:]
 
@@ -97,6 +125,16 @@ class VPaymentAgreementView:UIView{
             options:[],
             metrics:metrics,
             views:views))
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat:"H:|-10-[successFailureButton]-10-|",
+            options:[],
+            metrics:metrics,
+            views:views))
+        addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat:"V:[paymentLabel]-80-[successFailureButton(40)]",
+            options:[],
+            metrics:metrics,
+            views:views))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -112,9 +150,11 @@ class VPaymentAgreementView:UIView{
             if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
                 myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                     if success {
-                        makeTransactionRequest()
-                    } else {
-                        // User did not authenticate successfully, look at error and take appropriate action
+                        self.makeTransactionRequest(amount: Int(self.paymentCuantity)!)
+                        //self.cretaeUser(name: "Caleb")
+                    }
+                    else {
+
                     }
                 }
             } else {
@@ -129,10 +169,51 @@ class VPaymentAgreementView:UIView{
         controller.parentController.setMainMenu()
     }
 
-    func makeTransactionRequest(){
+    func cretaeUser(name:String){
+        let requestServices:CreateUserMutation = CreateUserMutation(name:"Caleb")
+
         DispatchQueue.global(qos:DispatchQoS.QoSClass.background).async
             {
+                self.apollo.perform(mutation: requestServices) { (result, error) in
+                    print(result!.data?.createUser.id! ?? "")
 
+                }
         }
+    }
+
+    func makeTransactionRequest(amount:Int){
+        let requestServices:ChangeValanceMutation = ChangeValanceMutation(senderID:kCodeSender, reciverID:kCodeReciver, amount:amount)
+
+        DispatchQueue.global(qos:DispatchQoS.QoSClass.background).async
+            {
+                self.apollo.perform(mutation: requestServices) { (result, error) in
+                    print(result!.data!.changeValance)
+                    let finalResult:Int = (result?.data?.changeValance)!
+
+                    UIView.animate(withDuration: 0.1,
+                                   delay: 0.1,
+                                   options: UIViewAnimationOptions.curveEaseIn,
+                                   animations: { () -> Void in
+
+                                    if finalResult > 0{
+                                        self.successFailureButton.isHidden = false
+                                        self.successFailureButton.setTitle("Transacción Exitosa", for: .normal)
+                                    }
+                                    else{
+                                        self.successFailureButton.isHidden = false
+                                        self.successFailureButton.setTitle("Error: Fondos insuficientes", for: .normal)
+                                    }
+
+                                    self.cancelButton.isHidden = true
+                                    self.paymentButton.isHidden = true
+                                    self.superview?.layoutIfNeeded()
+
+                    }, completion: nil)
+                }
+        }
+    }
+
+    @objc func endTransaction(sender:UIButton){
+        controller.parentController.setMainMenu()
     }
 }
