@@ -1,16 +1,21 @@
 type User {
   name: String
   id: String
-  valance: Int
+  balance: Int
+}
+
+type Transaction {
+  amount: Int
+  date: String
 }
 
 type Query {
-  hello(name: String): User!
+  getAnomalies(id: String!): [Transaction]
 }
 
 type Mutation {
   createUser(name: String!): User!
-  changeValance(
+  changeBalance(
     senderId: String!,
     recieverId: String!,
     amount: Int!
