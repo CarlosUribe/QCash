@@ -8,20 +8,17 @@
 
 import UIKit
 
-class CMainControllerTransitionPushRight:CMainControllerTransition
-{
+class CMainControllerTransitionPushRight:CMainControllerTransition{
     let poptype:CMainControllerTransitionPoptype
     weak var shade:VMainShade!
 
-    init(controller:UIViewController, poptype:CMainControllerTransitionPoptype)
-    {
+    init(controller:UIViewController, poptype:CMainControllerTransitionPoptype){
         self.poptype = poptype
 
         super.init(controller:controller)
     }
 
-    override func startTransition(main:CMain)
-    {
+    override func startTransition(main:CMain){
         let mainRect:CGRect = main.view.bounds
         let prevController:UIViewController = main.transition!.controller
         let shade:VMainShade = VMainShade(frame:mainRect)
@@ -50,8 +47,7 @@ class CMainControllerTransitionPushRight:CMainControllerTransition
         }
     }
 
-    override func pop()
-    {
+    override func pop(){
         let mainRect:CGRect = main.view.bounds
         let prevController:UIViewController = previousTransition!.controller
         controller.willMove(toParentViewController:nil)
@@ -75,18 +71,15 @@ class CMainControllerTransitionPushRight:CMainControllerTransition
         }
     }
 
-    override func popNoAnimation()
-    {
+    override func popNoAnimation(){
         super.popNoAnimation()
         shade.removeFromSuperview()
     }
 
     //MARK: private
 
-    private func preparePop()
-    {
-        switch(poptype)
-        {
+    private func preparePop(){
+        switch(poptype){
         case CMainControllerTransitionPoptype.all:
 
             popAllPrevious()

@@ -35,12 +35,4 @@ class CPaymentAgreementController: UIViewController {
     override var prefersStatusBarHidden:Bool{
         return false
     }
-
-    func showSuccessAndExit(){
-
-    }
-
-    func showFailureAndExit(){
-        
-    }
 }

@@ -19,6 +19,7 @@ class VPaymentAgreementView:UIView{
     var paymentCuantity:String = ""
     private let kCodeSender:String = "3ec61274-823b-4610-bd86-a8f5626c55b4"//usuario creado desde el backend
     private let kCodeReciver:String = "f093584c-9bf5-46ec-8754-c8ad84a935ec"
+    private let kDeviceWallet:String = "refWalletAddress"
 
     let apollo: ApolloClient = {
         let graphQLEndpoint:String = "https://qcash.roderik.io"
@@ -150,18 +151,18 @@ class VPaymentAgreementView:UIView{
             if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
                 myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                     if success {
-                        self.makeTransactionRequest(amount: Int(self.paymentCuantity)!)
-                        //self.cretaeUser(name: "Caleb")
+                        self.makeTransactionRequest(amount: Int(self.paymentCuantity)!)//Método para generar el contrato en el backend
+                        //self.cretaeUser(name: "Caleb")//Método para crear a un usuario en el Backend que regresa un identificador unico de la Blockchain
                     }
                     else {
-
+                        //Mandar mensaje de error
                     }
                 }
             } else {
-                // Could not evaluate policy; look at authError and present an appropriate message to user
+                //No se pudo comprobar la identidad del usuario
             }
         } else {
-            // Fallback on earlier versions
+            //La version de iOS es anterior a la permitida
         }
     }
 
@@ -176,7 +177,9 @@ class VPaymentAgreementView:UIView{
             {
                 self.apollo.perform(mutation: requestServices) { (result, error) in
                     print(result!.data?.createUser.id! ?? "")
-
+                    let idWallet:String = (result?.data?.createUser.id)!
+                    let defaults:UserDefaults = UserDefaults.standard
+                    defaults.set(idWallet, forKey: self.kDeviceWallet)
                 }
         }
     }

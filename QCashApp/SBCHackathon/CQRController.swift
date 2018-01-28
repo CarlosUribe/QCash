@@ -11,7 +11,6 @@ import AVFoundation
 
 
 class CQRController:UIViewController, AVCaptureMetadataOutputObjectsDelegate{
-    weak var qrView:VQRView!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
@@ -70,7 +69,7 @@ class CQRController:UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     }
 
     func failed() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Escaneo no soportado", message: "Tu dispositivo no tiene cámara", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
         captureSession = nil

@@ -25,7 +25,6 @@
 		B212BCB2201CF7E900B83504 /* CMainControllerTransitionReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCB1201CF7E900B83504 /* CMainControllerTransitionReplace.swift */; };
 		B212BCB4201CF87100B83504 /* VMainShade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCB3201CF87100B83504 /* VMainShade.swift */; };
 		B212BCB6201D01C500B83504 /* CQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCB5201D01C500B83504 /* CQRController.swift */; };
-		B212BCB8201D023600B83504 /* VQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCB7201D023600B83504 /* VQRView.swift */; };
 		B212BCBA201D036F00B83504 /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCB9201D036F00B83504 /* UIVIewControllerExtension.swift */; };
 		B212BCBE201D21F100B83504 /* NotificationsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCBD201D21F100B83504 /* NotificationsExtension.swift */; };
 		B212BCC0201D22F700B83504 /* CPaymentAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212BCBF201D22F700B83504 /* CPaymentAgreementController.swift */; };
@@ -78,7 +77,6 @@
 		B212BCB1201CF7E900B83504 /* CMainControllerTransitionReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMainControllerTransitionReplace.swift; sourceTree = "<group>"; };
 		B212BCB3201CF87100B83504 /* VMainShade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMainShade.swift; sourceTree = "<group>"; };
 		B212BCB5201D01C500B83504 /* CQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRController.swift; sourceTree = "<group>"; };
-		B212BCB7201D023600B83504 /* VQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VQRView.swift; sourceTree = "<group>"; };
 		B212BCB9201D036F00B83504 /* UIVIewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewControllerExtension.swift; sourceTree = "<group>"; };
 		B212BCBD201D21F100B83504 /* NotificationsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsExtension.swift; sourceTree = "<group>"; };
 		B212BCBF201D22F700B83504 /* CPaymentAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPaymentAgreementController.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				B212BCBF201D22F700B83504 /* CPaymentAgreementController.swift */,
 				B212BCAB201CF62B00B83504 /* CMain.swift */,
 				B20A57BE201C276B0008264F /* VMainView.swift */,
-				B212BCB7201D023600B83504 /* VQRView.swift */,
 				B212BCC1201D235C00B83504 /* VPaymentAgreementView.swift */,
 				B212BCC5201D42BA00B83504 /* VQRMakerView.swift */,
 				B212BCA7201CF4CC00B83504 /* CMainControllerTransition.swift */,
@@ -415,7 +412,6 @@
 			files = (
 				B212BCB2201CF7E900B83504 /* CMainControllerTransitionReplace.swift in Sources */,
 				B212BCAE201CF78B00B83504 /* CMainControllerTransitionPushRight.swift in Sources */,
-				B212BCB8201D023600B83504 /* VQRView.swift in Sources */,
 				B20A57BF201C276B0008264F /* VMainView.swift in Sources */,
 				B212BCA8201CF4CC00B83504 /* CMainControllerTransition.swift in Sources */,
 				B20A57BD201C26F90008264F /* CMainController.swift in Sources */,
