@@ -10,27 +10,27 @@ let users = jsonfile.readFileSync(USER_PATH)
 const getUsers = () => users
 
 const saveUser = (name) => {
-  const user = {name, id: uuidv4(), valance: 0}
+  const user = {name, id: uuidv4(), balance: 0}
   users = users.concat(user)
   jsonfile.writeFileSync(USER_PATH, users)
   return user
 }
 
-const modifyValance = (senderId, recieverId, amount) => {
+const modifyBalance = (senderId, recieverId, amount) => {
   const senderIdx = users.findIndex(({ id }) => senderId === id)
   const recieverIdx = users.findIndex(({ id }) => recieverId === id)
 
-  const senderAmount = users[senderIdx].valance
-  const recieverAmount = users[recieverIdx].valance
+  const senderAmount = users[senderIdx].balance
+  const recieverAmount = users[recieverIdx].balance
 
   if (senderAmount < amount) {
     return 0
   }
 
-  users[senderIdx].valance = senderAmount - amount
-  users[recieverIdx].valance = recieverAmount + amount
+  users[senderIdx].balance = senderAmount - amount
+  users[recieverIdx].balance = recieverAmount + amount
   jsonfile.writeFileSync(USER_PATH, users)
-  return users[recieverIdx].valance
+  return users[recieverIdx].balance
 }
 
 let chain = jsonfile.readFileSync(BLOCK_PATH)
@@ -46,7 +46,7 @@ const getChain = () => jsonfile.readFileSync(BLOCK_PATH)
 module.exports = {
   getUsers,
   saveUser,
-  modifyValance,
+  modifyBalance,
   saveBlock,
   getChain
 }
