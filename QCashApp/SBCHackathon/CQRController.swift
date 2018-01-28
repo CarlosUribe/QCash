@@ -13,6 +13,7 @@ import AVFoundation
 class CQRController:UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    weak var closeButton:UIButton!
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
                                       AVMetadataObject.ObjectType.code39Mod43,
@@ -66,6 +67,33 @@ class CQRController:UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
+
+        let closeButton:UIButton = UIButton()
+        closeButton.clipsToBounds = true
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.addTarget(self, action: #selector(closeAction(sender:)), for: .touchUpInside)
+        closeButton.setTitle("X", for: .normal)
+        closeButton.layer.cornerRadius = 50 / 2
+        self.closeButton = closeButton
+
+        view.addSubview(closeButton)
+        view.bringSubview(toFront: closeButton)
+
+        let views:[String : UIView] = [
+            "closeButton":closeButton]
+
+        let metrics:[String : CGFloat] = [:]
+
+        view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat:"H:|-20-[closeButton(50)]",
+            options:[],
+            metrics:metrics,
+            views:views))
+        view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat:"V:|-45-[closeButton(50)]",
+            options:[],
+            metrics:metrics,
+            views:views))
     }
 
     func failed() {
@@ -114,5 +142,9 @@ class CQRController:UIViewController, AVCaptureMetadataOutputObjectsDelegate{
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+
+    @objc func closeAction(sender:UIButton){
+        self.parentController.setMainMenu()
     }
 }
