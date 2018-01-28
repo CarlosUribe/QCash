@@ -22,8 +22,8 @@ let blockchain = new Blockchain()
 const resolvers = {
   Query: {
     getAnomalies: (_, {
-      name
-    }) => anomaly(),
+      id
+    }) => anomaly(id),
   },
   Mutation: {
     createUser: (_, {
